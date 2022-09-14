@@ -1,7 +1,10 @@
+<app-loader [isLoading]="isLoading"></app-loader>
+
 <div class="wrapper home-page-wrapper">
+
   <app-paginated-list
+          *ngIf="pokemonListWithDetails && !isLoading"
           (changePageEmitter)="getAllPokemons($event)"
-          *ngIf="pokemonListWithDetails"
           [pokemonDisplayList]="pokemonListWithDetails"
   >
   </app-paginated-list>

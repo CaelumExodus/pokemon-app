@@ -12,6 +12,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class HomePageComponent implements OnInit {
 
+  public isLoading = true;
   public count = 0;
   public previous: string | null = ''
   public next: string | null = ''
@@ -26,8 +27,6 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPokemons();
-
-
     // this._pokemonService.getSinglePokemon(1).subscribe(
     //   res => console.log(res)
     // )
@@ -38,6 +37,7 @@ export class HomePageComponent implements OnInit {
     this._pokemonService.getAllPokemons(offset).pipe(
       finalize(() => {
         this.getPokemonDetails();
+        this.isLoading = false;
       })
     ).subscribe(
       res => {
