@@ -1,4 +1,10 @@
 <div class="wrapper paginated-list-wrapper">
+  <div class="m-t-24">
+    <p class="text-center">
+      <span class="cursor-pointer" (click)="previousPage()">previous page | </span>
+      <span class="cursor-pointer" (click)="nextPage()"> next page</span>
+    </p>
+  </div>
   <div class="list-display d-flex flex-wrap justify-center align-center">
     <ng-container *ngFor="let pokemon of pokemonDisplayList">
       <app-pokemon-card
@@ -11,10 +17,5 @@
     </ng-container>
   </div>
 
-  <div class="m-t-24">
-    <p class="text-center">
-      <span class="cursor-pointer" (click)="previousPage()">previous page | </span>
-      <span class="cursor-pointer" (click)="nextPage()"> next page</span>
-    </p>
-  </div>
+
 </div>

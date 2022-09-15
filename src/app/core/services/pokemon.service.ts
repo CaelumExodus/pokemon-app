@@ -9,7 +9,7 @@ import { IPokemonList } from "../interfaces/IPokemonList";
 })
 export class PokemonService {
 
-  private _baseUrl = '/pokemon'
+  private readonly _baseUrl = '/pokemon'
 
   constructor(
     private readonly _apiService: ApiService

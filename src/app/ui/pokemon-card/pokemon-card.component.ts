@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { IPokemonType } from "../../core/interfaces/IPokemonType";
 
 @Component({
@@ -14,7 +14,9 @@ export class PokemonCardComponent implements OnInit {
   @Input() pokemonRegion = 'No data'
   @Input() pokemonSprite = ''
 
-  constructor() {
+  constructor(
+    private readonly _cdr: ChangeDetectorRef
+  ) {
   }
 
   ngOnInit(): void {

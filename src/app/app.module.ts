@@ -9,6 +9,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { PaginatedListComponent } from './ui/paginated-list/paginated-list.component';
 import { PokemonCardComponent } from './ui/pokemon-card/pokemon-card.component';
 import { LoaderComponent } from './ui/loader/loader.component';
+import { SkeletonLoaderComponent } from './ui/skeleton-loader/skeleton-loader.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoaderComponent } from './ui/loader/loader.component';
     PokemonDetailsComponent,
     PaginatedListComponent,
     PokemonCardComponent,
-    LoaderComponent
+    LoaderComponent,
+    SkeletonLoaderComponent
   ],
   imports: [
     BrowserModule,

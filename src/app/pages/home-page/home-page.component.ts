@@ -1,16 +1,17 @@
-import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { PokemonService } from "../../core/services/pokemon.service";
 import { IPokemonList } from "../../core/interfaces/IPokemonList";
 import { IValueAndId } from "../../core/interfaces/IValueAndId";
-import { finalize } from "rxjs";
+import { finalize, Subscription } from "rxjs";
 import { HttpClient } from "@angular/common/http";
+import { ActivatedRoute, Route, Router } from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
 
   public isLoading = true;
   public count = 0;
@@ -19,20 +20,24 @@ export class HomePageComponent implements OnInit {
   public pokemonDetailUrlList: IValueAndId[] = [];
   public pokemonListWithDetails: any = [];
 
+  private _subArray: Subscription[] = [];
+  private _offset = 0;
+
   constructor(
     private readonly _pokemonService: PokemonService,
     private readonly _httpClient: HttpClient,
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly _cdr: ChangeDetectorRef,
+    private readonly _router: Router,
   ) {
   }
 
   ngOnInit(): void {
     this.getAllPokemons();
-    // this._pokemonService.getSinglePokemon(1).subscribe(
-    //   res => console.log(res)
-    // )
   }
 
   public getAllPokemons(offset = 0): void {
+    this.isLoading = true;
     this.pokemonListWithDetails = [];
     this._pokemonService.getAllPokemons(offset).pipe(
       finalize(() => {
@@ -57,6 +62,10 @@ export class HomePageComponent implements OnInit {
         }
       )
     })
+  }
+
+  ngOnDestroy() {
+    this._subArray.forEach(subscription => subscription.unsubscribe());
   }
 
 }
