@@ -3,6 +3,7 @@ import { Observable } from "rxjs";
 import { ApiService } from "./api.service";
 import { HttpParams } from "@angular/common/http";
 import { IPokemonList } from "../interfaces/IPokemonList";
+import { IPokemonSpecies } from "../interfaces/IPokemonSpecies";
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +28,12 @@ export class PokemonService {
     return this._apiService.get('/pokemon', params);
   }
 
-  public getSinglePokemon(pokemonIndex: number): Observable<any> {
-    return this._apiService.get(`${ this._baseUrl }/${pokemonIndex}`)
+  public getSinglePokemon(pokemonName: string | null): Observable<any> {
+    return this._apiService.get(`${ this._baseUrl }/${ pokemonName }`)
   }
 
-  public test(): Observable<any> {
-    return this._apiService.get(``)
+  public getPokemonSpecies(name: string | null): Observable<IPokemonSpecies> {
+    return this._apiService.get(`${ this._baseUrl }-species/${ name }`)
   }
+
 }

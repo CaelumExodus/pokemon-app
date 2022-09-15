@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { PokemonService } from "../../core/services/pokemon.service";
-import { IPokemonList } from "../../core/interfaces/IPokemonList";
 import { IValueAndId } from "../../core/interfaces/IValueAndId";
 import { finalize, Subscription } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { ActivatedRoute, Route, Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { EvolutionService } from "../../core/services/evolution.service";
 
 @Component({
   selector: 'app-home-page',
@@ -21,7 +21,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public pokemonListWithDetails: any = [];
 
   private _subArray: Subscription[] = [];
-  private _offset = 0;
 
   constructor(
     private readonly _pokemonService: PokemonService,
@@ -29,6 +28,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _cdr: ChangeDetectorRef,
     private readonly _router: Router,
+    private readonly _evolutionService: EvolutionService,
   ) {
   }
 
@@ -67,5 +67,4 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this._subArray.forEach(subscription => subscription.unsubscribe());
   }
-
 }

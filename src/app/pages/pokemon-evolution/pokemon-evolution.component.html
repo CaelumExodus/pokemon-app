@@ -1,0 +1,13 @@
+<div class="wrapper pokemon-evolution-wrapper">
+  <div class="evolution-display d-flex flex-wrap justify-center align-center">
+    <ng-container *ngFor="let pokemon of pokemonInfo">
+      <app-pokemon-card
+              [pokemonId]="pokemon.id"
+              [pokemonName]="pokemon.name"
+              [pokemonTypes]="pokemon.types"
+              [pokemonSprite]="pokemon.sprites.front_default"
+      >
+      </app-pokemon-card>
+    </ng-container>
+  </div>
+</div>

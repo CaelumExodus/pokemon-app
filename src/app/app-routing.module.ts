@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from "./pages/home-page/home-page.component";
+import { PokemonEvolutionComponent } from "./pages/pokemon-evolution/pokemon-evolution.component";
 
 const routes: Routes = [
   {
     path: '',
     component: HomePageComponent,
+  },
+  {
+    path: 'evolution/:name',
+    component: PokemonEvolutionComponent
   },
   {
     path: '**',
