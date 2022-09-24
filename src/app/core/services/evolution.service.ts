@@ -7,7 +7,6 @@ import { HttpClient } from "@angular/common/http";
 })
 export class EvolutionService {
 
-
   constructor(
     private readonly _httpClient: HttpClient
   ) { }

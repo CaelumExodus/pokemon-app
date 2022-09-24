@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PokemonService } from "../../core/services/pokemon.service";
 import { IValueAndId } from "../../core/interfaces/IValueAndId";
-import { finalize, Subscription } from "rxjs";
+import { finalize } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import { EvolutionService } from "../../core/services/evolution.service";
@@ -11,16 +11,13 @@ import { EvolutionService } from "../../core/services/evolution.service";
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent implements OnInit, OnDestroy {
+export class HomePageComponent implements OnInit {
 
   public isLoading = true;
-  public count = 0;
-  public previous: string | null = ''
-  public next: string | null = ''
   public pokemonDetailUrlList: IValueAndId[] = [];
   public pokemonListWithDetails: any = [];
+  public offset = 0;
 
-  private _subArray: Subscription[] = [];
 
   constructor(
     private readonly _pokemonService: PokemonService,
@@ -33,22 +30,45 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getAllPokemons();
+    (this._activatedRoute.queryParams.subscribe(
+        res => {
+          if (
+            Number(res['offset']) !== NaN &&
+            Number(res['offset']) >= 0 &&
+            Number(res['offset']) <= 10249
+          ) {
+            this.offset = Number(res['offset']);
+          } else {
+            this.resetPage();
+          }
+          this.getAllPokemons(this.offset);
+        }
+      )
+    )
+
   }
 
-  public getAllPokemons(offset = 0): void {
+  public resetPage(): void {
+    this._router.navigate([], {
+      relativeTo: this._activatedRoute,
+      queryParams: {
+        offset: 0
+      }
+    });
+  }
+
+  public getAllPokemons(offset: number): void {
+    console.log(this.offset)
+
     this.isLoading = true;
     this.pokemonListWithDetails = [];
-    this._pokemonService.getAllPokemons(offset).pipe(
+    this._pokemonService.getPokemonList(offset).pipe(
       finalize(() => {
         this.getPokemonDetails();
         this.isLoading = false;
       })
     ).subscribe(
       res => {
-        this.count = res.count
-        this.previous = res.previous
-        this.next = res.next;
         this.pokemonDetailUrlList = res.results;
       }
     )
@@ -56,15 +76,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   public getPokemonDetails() {
     this.pokemonDetailUrlList.forEach(pokemon => {
-      this._httpClient.get(pokemon.url).pipe().subscribe(
+      this._pokemonService.getSinglePokemon(pokemon.name).pipe().subscribe(
         res => {
           this.pokemonListWithDetails.push(res)
         }
       )
     })
-  }
-
-  ngOnDestroy() {
-    this._subArray.forEach(subscription => subscription.unsubscribe());
   }
 }

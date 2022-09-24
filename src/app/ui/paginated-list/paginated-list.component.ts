@@ -11,11 +11,11 @@ import { Subscription } from "rxjs";
 export class PaginatedListComponent implements OnInit, OnDestroy {
 
   @Input() pokemonDisplayList: ISinglePokemon[] = [];
+  @Input() showPagination = true;
+  @Input() offset = 0;
 
   @Output() changePageEmitter = new EventEmitter<number>()
 
-
-  private _offset = 0;
   private _subArray: Subscription[] = []
 
   constructor(
@@ -25,35 +25,23 @@ export class PaginatedListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if(this._subArray.length) {
-      this._subArray.forEach(subscription => subscription.unsubscribe());
-    }
 
-    this._subArray.push(this._activatedRoute.queryParams.subscribe(
-        res => {
-          console.log('params Changed')
-          if (Number(res['offset'] >= 0)) {
-            this._offset = Number(res['offset'])
-            console.log(this._offset)
-          }
-        }
-      )
-    )
   }
 
   public nextPage(): void {
-    if (this._offset !== 10249) {
-      this._offset += 20
+    if (this.offset <= 10249) {
+      console.log('asd')
+      this.offset += 20
       this.appendQueryParams();
-      this.changePageEmitter.emit(this._offset)
+      this.changePageEmitter.emit(this.offset)
     }
   }
 
   public previousPage(): void {
-    if (this._offset > 0) {
-      this._offset -= 20
+    if (this.offset > 0) {
+      this.offset -= 20
       this.appendQueryParams();
-      this.changePageEmitter.emit(this._offset)
+      this.changePageEmitter.emit(this.offset)
     }
   }
 
@@ -61,7 +49,7 @@ export class PaginatedListComponent implements OnInit, OnDestroy {
     this._router.navigate([], {
       relativeTo: this._activatedRoute,
       queryParams: {
-        offset: this._offset
+        offset: this.offset
       }
     });
   }
@@ -69,5 +57,4 @@ export class PaginatedListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this._subArray.forEach(subscription => subscription.unsubscribe());
   }
-
 }

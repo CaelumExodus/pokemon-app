@@ -8,7 +8,7 @@ import { PaginatedListComponent } from './ui/paginated-list/paginated-list.compo
 import { PokemonCardComponent } from './ui/pokemon-card/pokemon-card.component';
 import { LoaderComponent } from './ui/loader/loader.component';
 import { SkeletonLoaderComponent } from './ui/skeleton-loader/skeleton-loader.component';
-import { PokemonEvolutionComponent } from './pages/pokemon-evolution/pokemon-evolution.component';
+import { EvolutionPageComponent } from './pages/evolution-page/evolution-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { PokemonEvolutionComponent } from './pages/pokemon-evolution/pokemon-evo
     PokemonCardComponent,
     LoaderComponent,
     SkeletonLoaderComponent,
-    PokemonEvolutionComponent
+    EvolutionPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+<app-loader [isLoading]="isLoading"></app-loader>
+<div class="wrapper pokemon-evolution-wrapper">
+
+  <div class="d-flex justify-center align-center m-b-24 ">
+    <button
+            class="cursor-pointer"
+            (click)="goBack()"
+    >
+      Back
+    </button>
+  </div>
+
+  <div class="evolution-display d-flex flex-wrap justify-center align-center">
+
+    <app-paginated-list
+            [showPagination]="false"
+            [pokemonDisplayList]="pokemonInfo"
+    >
+    </app-paginated-list>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 
 <div class="pokemon-card-wrapper">
-  <div class="pokemon-card" [routerLink]="['/evolution', pokemonName]">
+  <div class="pokemon-card" [routerLink]=" isRouterLinkActive ? ['/evolution', pokemonName] : []">
     <div class="id m-b-8 text-center">
       {{ pokemonId }}
     </div>

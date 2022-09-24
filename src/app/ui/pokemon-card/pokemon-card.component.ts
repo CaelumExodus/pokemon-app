@@ -13,9 +13,9 @@ export class PokemonCardComponent implements OnInit {
   @Input() pokemonTypes: IPokemonType[]  = [];
   @Input() pokemonRegion = 'No data'
   @Input() pokemonSprite = ''
+  @Input() isRouterLinkActive = true;
 
   constructor(
-    private readonly _cdr: ChangeDetectorRef
   ) {
   }
 
