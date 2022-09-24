@@ -33,15 +33,15 @@ export class HomePageComponent implements OnInit {
     (this._activatedRoute.queryParams.subscribe(
         res => {
           if (
-            Number(res['offset']) !== NaN &&
+            !isNaN(Number(res['offset'])) &&
             Number(res['offset']) >= 0 &&
             Number(res['offset']) <= 10249
           ) {
             this.offset = Number(res['offset']);
+            this.getAllPokemons(this.offset);
           } else {
             this.resetPage();
           }
-          this.getAllPokemons(this.offset);
         }
       )
     )
