@@ -33,6 +33,7 @@ export class EvolutionPageComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(
       params => this.pokemonName = params.get('name'),
+      err => console.log(err)
     )
 
     this._pokemonService.getPokemonSpecies(this.pokemonName).subscribe(
@@ -63,20 +64,16 @@ export class EvolutionPageComponent implements OnInit {
         if (evChain === undefined) break;
 
         this.evolutionNames.push(evChain.species.name);
-        console.log(this.evolutionNames);
       }
 
     }
-    console.log('next');
 
     this.evolutionNames.forEach(pokemonName => {
         this._pokemonService.getSinglePokemon(pokemonName).pipe(
           finalize( () => this.isLoading = false)
         ).subscribe(
-          res => {
-            this.pokemonInfo.push(res)
-            console.log(this.pokemonInfo);
-          }
+          res => this.pokemonInfo.push(res),
+          err => console.log(err)
         )
       }
     )

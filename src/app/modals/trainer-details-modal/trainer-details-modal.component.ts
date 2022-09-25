@@ -57,9 +57,7 @@ export class TrainerDetailsModalComponent implements OnInit {
       res => {
         this.randomPokemonsArray.push(res)
       },
-      err => {
-        console.log(err)
-      }
+      err => console.log(err)
     )
   }
 

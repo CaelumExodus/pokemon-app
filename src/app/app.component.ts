@@ -29,10 +29,6 @@ export class AppComponent implements AfterViewInit {
   }
 
   public test(trainerInfo: ITrainerInfo) {
-    console.log(trainerInfo.trainerName)
-    console.log(trainerInfo.trainerLocation)
-    console.log(trainerInfo.pokemonName)
-
     this.trainerInfo = trainerInfo;
 
     this.ngxSmartModalService.getModal('trainerModal').close();

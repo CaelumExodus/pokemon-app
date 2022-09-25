@@ -32,7 +32,6 @@ export class PaginatedListComponent implements OnInit, OnDestroy {
 
   public nextPage(): void {
     if (this.offset <= 10249) {
-      console.log('asd')
       this.offset += 20
       this.appendQueryParams();
       this.changePageEmitter.emit(this.offset)

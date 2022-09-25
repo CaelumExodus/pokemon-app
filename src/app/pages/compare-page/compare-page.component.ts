@@ -43,7 +43,6 @@ export class ComparePageComponent implements OnInit {
     this._pokemonService.getSinglePokemon(this.firstPokemon).subscribe(
       res => {
         this.firstPokemonStats = res.stats
-        console.log(this.firstPokemonStats)
       },
       err => console.log(err)
     )
@@ -51,7 +50,6 @@ export class ComparePageComponent implements OnInit {
     this._pokemonService.getSinglePokemon(this.secondPokemon).subscribe(
       res => {
         this.secondPokemonStats = res.stats
-        console.log(this.secondPokemonStats)
       },
       err => console.log(err)
     )

@@ -53,9 +53,6 @@ export class CompareTableComponent implements OnInit {
         this.secondPokemonFilteredStats.SPEED = pokemonStat.base_stat
       }
     })
-
-    console.log(this.firstPokemonFilteredStats)
-    console.log(this.secondPokemonFilteredStats)
   }
 
 }

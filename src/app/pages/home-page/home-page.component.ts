@@ -46,7 +46,8 @@ export class HomePageComponent implements OnInit {
           } else {
             this.resetPage();
           }
-        }
+        },
+        err => console.log(err)
       )
     )
   }
@@ -69,9 +70,8 @@ export class HomePageComponent implements OnInit {
         this.isLoading = false;
       })
     ).subscribe(
-      res => {
-        this.pokemonDetailUrlList = res.results;
-      }
+      res => this.pokemonDetailUrlList = res.results,
+      err => console.log(err)
     )
   }
 
@@ -83,7 +83,8 @@ export class HomePageComponent implements OnInit {
         res => {
           this.pokemonListWithDetails.push(res);
           this.pokemonListWithDetailsCopy = this.pokemonListWithDetails;
-        }
+        },
+        err => console.log(err)
       )
     })
   }
@@ -125,7 +126,6 @@ export class HomePageComponent implements OnInit {
         }
       })
 
-      console.log('filterArray',this.filtersArray)
       return deleteFlag
     })
   }
