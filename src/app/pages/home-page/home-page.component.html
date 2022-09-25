@@ -6,8 +6,9 @@
 
   <div class="filters d-flex justify-center align-center flex-wrap m-b-24">
     <div class="cursor-pointer  {{ type }}-filter"
+         #filter
          *ngFor="let type of availableFiltersArray"
-         (click)="filterByType(type)">
+         (click)="filterByType(type, filter)">
       {{ type }}
     </div>
   </div>

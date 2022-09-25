@@ -25,7 +25,7 @@ export class AppComponent implements AfterViewInit {
   public ngAfterViewInit() {
     setTimeout(() => {
       this.ngxSmartModalService.getModal('trainerModal').open()
-    }, 1000)
+    }, 5000)
   }
 
   public test(trainerInfo: ITrainerInfo) {

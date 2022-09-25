@@ -17,6 +17,7 @@ export class HomePageComponent implements OnInit {
   public isLoading = true;
   public pokemonDetailUrlList: IValueAndId[] = [];
   public pokemonListWithDetails: ISinglePokemon[] = [];
+  public pokemonListWithDetailsCopy: ISinglePokemon[] = [];
   public offset = 0;
   public filtersArray: string[] = [];
   public availableFiltersArray: string[] = [];
@@ -81,6 +82,7 @@ export class HomePageComponent implements OnInit {
       ).subscribe(
         res => {
           this.pokemonListWithDetails.push(res);
+          this.pokemonListWithDetailsCopy = this.pokemonListWithDetails;
         }
       )
     })
@@ -98,7 +100,12 @@ export class HomePageComponent implements OnInit {
     })
   }
 
-  public filterByType(type: string): void {
+  public filterByType(type: string, filterBox: HTMLDivElement): void {
+
+    filterBox.style.borderColor === 'green' ? filterBox.style.borderColor = 'white' : filterBox.style.borderColor = 'green'
+    filterBox.style.color === 'green' ? filterBox.style.color = 'white' : filterBox.style.color = 'green'
+
+    this.pokemonListWithDetails = this.pokemonListWithDetailsCopy
 
     if(this.filtersArray.includes(type)) {
       this.filtersArray = this.filtersArray.filter( existingType => existingType !== type)
@@ -121,19 +128,5 @@ export class HomePageComponent implements OnInit {
       console.log('filterArray',this.filtersArray)
       return deleteFlag
     })
-
   }
-
-  public appendFilter(filter: string[]): void {
-    console.log('Append')
-    this._router.navigate([], {
-      relativeTo: this._activatedRoute,
-      queryParams: {
-        filters: filter
-      },
-      queryParamsHandling: 'merge',
-    });
-  }
-
-
 }
