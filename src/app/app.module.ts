@@ -12,6 +12,8 @@ import { EvolutionPageComponent } from './pages/evolution-page/evolution-page.co
 import { NgxSmartModalModule } from "ngx-smart-modal";
 import { TrainerDetailsModalComponent } from './modals/trainer-details-modal/trainer-details-modal.component';
 import { FormsModule } from "@angular/forms";
+import { ComparePageComponent } from './pages/compare-page/compare-page.component';
+import { CompareTableComponent } from './ui/compare-table/compare-table.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { FormsModule } from "@angular/forms";
     SkeletonLoaderComponent,
     EvolutionPageComponent,
     TrainerDetailsModalComponent,
+    ComparePageComponent,
+    CompareTableComponent,
   ],
   imports: [
     BrowserModule,

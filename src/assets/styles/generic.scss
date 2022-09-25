@@ -1,0 +1,30 @@
+.btn {
+  width: 250px;
+  height: 40px;
+  background: none;
+  color: #FFFFFF;
+  padding: 8px;
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &_back {
+    width: 100px;
+  }
+}
+
+.select-box {
+  padding: 8px;
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  background: none;
+  color: #FFFFFF;
+  font-size: 18px;
+
+  option {
+    background: #12121f;
+    color: #FFFFFF;
+    padding: 7px;
+    font-size: 18px;
+  }
+}

@@ -1,5 +1,11 @@
 <app-loader [isLoading]="isLoading"></app-loader>
 <div class="wrapper pokemon-evolution-wrapper">
+  <button
+          class="btn btn_back"
+          (click)="goBack()"
+  >
+    Back
+  </button>
 
 
   <div class="evolution-display d-flex flex-wrap justify-center align-center">
@@ -11,12 +17,7 @@
   </div>
 
   <div class="d-flex justify-center align-center m-t-24 ">
-    <button
-            class="cursor-pointer"
-            (click)="goBack()"
-    >
-      Back
-    </button>
+
   </div>
 
 </div>

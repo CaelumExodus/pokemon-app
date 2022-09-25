@@ -1,0 +1,34 @@
+<div class="wrapper compare-wrapper">
+
+  <button class="btn btn_back" (click)="goBack()">Back</button>
+
+  <div class="d-flex justify-center align-center flex-column m-t-24">
+    <div class="select-wrapper m-b-32">
+
+      <select class="select-box m-r-40" [(ngModel)]="firstPokemon">
+        <option hidden>First pokemon to compare</option>
+        <option *ngFor="let name of pokemonNames">
+          {{ name }}
+        </option>
+      </select>
+
+      <select class="select-box" [(ngModel)]="secondPokemon">
+        <option hidden>Second pokemon to compare</option>
+        <option *ngFor="let name of pokemonNames">
+          {{ name }}
+        </option>
+      </select>
+    </div>
+
+    <button class="btn" (click)="comparePokemons()"> Compare</button>
+
+    <div class="m-t-40">
+      <app-compare-table
+        *ngIf="firstPokemonStats.length && secondPokemonStats.length"
+        [firstPokemonAllStats]="firstPokemonStats"
+        [secondPokemonAllStats]="secondPokemonStats"
+      >
+      </app-compare-table>
+    </div>
+  </div>
+</div>

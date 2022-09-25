@@ -16,10 +16,17 @@
         <app-skeleton-loader></app-skeleton-loader>
       </div>
     </div>
-    <div class="random-pokemons d-flex m-t-24 flex-wrap justify-center align-center" *ngIf="!isLoading">
-      <ng-container *ngFor="let pokemon of randomPokemonsArray">
+    <div
+            class="random-pokemons d-flex m-t-24 flex-wrap justify-center align-center"
+            *ngIf="!isLoading"
+    >
+      <div
+              class="random-pokemon"
+              *ngFor="let pokemon of randomPokemonsArray"
+              #randomPokemon
+      >
         <app-pokemon-card
-                (click)="chosePokemon(pokemon.name)"
+                (click)="chosePokemon(pokemon.name, randomPokemon)"
                 [isRouterLinkActive]="false"
                 [pokemonId]="pokemon.id"
                 [pokemonName]="pokemon.name"
@@ -27,7 +34,7 @@
                 [pokemonSprite]="pokemon.sprites.front_default"
         >
         </app-pokemon-card>
-      </ng-container>
+      </div>
     </div>
 
     <button class="m-t-16 cursor-pointer" (click)="saveTrainerData()">Save</button>

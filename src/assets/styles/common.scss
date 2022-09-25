@@ -1,9 +1,10 @@
+@import "~ngx-smart-modal/ngx-smart-modal";
 @import "wrapper";
 @import "grid";
 @import "spacing";
 @import "alignment";
 @import "typography";
-@import "~ngx-smart-modal/ngx-smart-modal";
+@import "generic";
 
 * {
   margin: 0;
@@ -29,6 +30,7 @@ nav {
 
   p {
     font-size: 20px;
+    line-height: 1.5;
     span {
       text-transform: capitalize;
       color: green;

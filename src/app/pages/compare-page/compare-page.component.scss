@@ -1,0 +1,26 @@
+.compare-wrapper {
+
+  .select-wrapper {
+
+    .select-box {
+      @media (max-width: 600px) {
+        &:first-of-type {
+          margin: 0 0 20px 0 !important;
+        }
+        width: 300px;
+
+      }
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+  }
+
+
+}

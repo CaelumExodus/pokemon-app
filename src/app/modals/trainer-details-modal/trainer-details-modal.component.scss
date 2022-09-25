@@ -35,6 +35,11 @@
     gap: 16px;
   }
 
+  .selected-card {
+    border: 5px solid green;
+    border-radius: 18px;
+  }
+
   button {
     padding: 16px;
     font-size: 18px;

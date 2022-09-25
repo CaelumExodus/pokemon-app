@@ -18,10 +18,10 @@ export class PokemonService {
   ) {
   }
 
-  public getPokemonList(offset: number = 0): Observable<IPokemonList> {
+  public getPokemonList(limit: number = 20, offset: number = 0): Observable<IPokemonList> {
     const params = new HttpParams({
       fromObject: {
-        limit: 20,
+        limit,
         offset,
       }
     })

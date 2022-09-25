@@ -37,7 +37,6 @@ export class TrainerDetailsModalComponent implements OnInit {
       res => {
         this.regionArray
         res.results.forEach(region => this.regionArray.push(region.name))
-        console.log(this.regionArray)
       },
       err => console.log(err)
     )
@@ -64,7 +63,15 @@ export class TrainerDetailsModalComponent implements OnInit {
     )
   }
 
-  public chosePokemon(name: string): void {
+  public chosePokemon(name: string, card: HTMLDivElement): void {
+    const resetBorder = document.querySelector('.selected-card')
+
+    if (resetBorder) {
+      resetBorder.classList.remove('selected-card')
+    }
+
+    card.classList.add('selected-card')
+
     this.trainerInfo.pokemonName = name;
   }
 

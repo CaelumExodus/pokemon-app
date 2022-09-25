@@ -1,0 +1,64 @@
+<div class="compare-table-wrapper">
+
+  <div class="stat-container">
+
+    <div class="stat-box m-b-16 d-flex justify-between justify-between">
+      HP:
+      <div
+              class="number-box d-flex justify-between align-center m-l-16"
+              [ngClass]="
+              firstPokemonFilteredStats.HP > secondPokemonFilteredStats.HP ?
+              'first-stat-higher' : firstPokemonFilteredStats.HP === secondPokemonFilteredStats.HP ?
+              '' : 'second-stat-higher'"
+      >
+        <span class="m-r-24">{{ firstPokemonFilteredStats.HP }} </span>
+        <span>{{ secondPokemonFilteredStats.HP }}</span>
+      </div>
+    </div>
+
+
+    <div class="stat-box m-b-16 d-flex justify-between">
+      ATTACK:
+      <div
+              class="number-box d-flex justify-between align-center m-l-16"
+              [ngClass]="
+              firstPokemonFilteredStats.ATTACK > secondPokemonFilteredStats.ATTACK ?
+              'first-stat-higher' : firstPokemonFilteredStats.ATTACK === secondPokemonFilteredStats.ATTACK ?
+              '' : 'second-stat-higher'"
+      >
+        <span class="m-r-24">{{ firstPokemonFilteredStats.ATTACK }} </span>
+        <span>{{ secondPokemonFilteredStats.ATTACK }}</span>
+      </div>
+    </div>
+
+    <div class="stat-box m-b-16 d-flex justify-between">
+      DEFENSE:
+      <div
+              class="number-box d-flex justify-between align-center m-l-16"
+              [ngClass]="
+              firstPokemonFilteredStats.DEFENSE > secondPokemonFilteredStats.DEFENSE ?
+              'first-stat-higher' : firstPokemonFilteredStats.DEFENSE === secondPokemonFilteredStats.DEFENSE ?
+              '' : 'second-stat-higher'"
+      >
+        <span class="m-r-24">{{ firstPokemonFilteredStats.DEFENSE }} </span>
+        <span>{{ secondPokemonFilteredStats.DEFENSE }}</span>
+      </div>
+    </div>
+
+    <div class="stat-box d-flex justify-between">
+      SPEED:
+      <div
+              class="number-box d-flex justify-between align-center m-l-16"
+              [ngClass]="
+              firstPokemonFilteredStats.SPEED > secondPokemonFilteredStats.SPEED ?
+              'first-stat-higher' : firstPokemonFilteredStats.SPEED === secondPokemonFilteredStats.SPEED ?
+              '' : 'second-stat-higher'"
+      >
+        <span class="m-r-24">{{ firstPokemonFilteredStats.SPEED }} </span>
+        <span>{{ secondPokemonFilteredStats.SPEED }}</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>

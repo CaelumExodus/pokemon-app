@@ -1,0 +1,41 @@
+.compare-table-wrapper {
+
+  .stat-box {
+    min-width: 250px;
+    font-size: 24px;
+
+    .number-box {
+      min-width: 100px;
+    }
+
+    .first-stat-higher {
+      span {
+        &:first-of-type {
+        color: green;
+        font-size: 28px;
+        }
+
+        &:not(:first-of-type) {
+          color: red;
+        }
+      }
+    }
+
+    .second-stat-higher {
+      span {
+        &:first-of-type {
+          color: red;
+        }
+
+        &:not(:first-of-type) {
+          color: green;
+          font-size: 28px;
+        }
+      }
+    }
+
+    span {
+      display: block;
+    }
+  }
+}
