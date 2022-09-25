@@ -62,7 +62,7 @@ export class HomePageComponent implements OnInit {
   public getAllPokemons(offset: number): void {
     this.isLoading = true;
     this.pokemonListWithDetails = [];
-    this._pokemonService.getPokemonList(offset).pipe(
+    this._pokemonService.getPokemonList(20, offset).pipe(
       finalize(() => {
         this.getPokemonDetails();
         this.isLoading = false;

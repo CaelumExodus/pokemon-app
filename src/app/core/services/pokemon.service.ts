@@ -22,7 +22,7 @@ export class PokemonService {
     const params = new HttpParams({
       fromObject: {
         limit,
-        offset,
+        offset: offset,
       }
     })
 

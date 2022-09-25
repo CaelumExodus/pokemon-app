@@ -1,5 +1,9 @@
 <div class="pokemon-card-wrapper">
-  <div class="pokemon-card" [routerLink]=" isRouterLinkActive ? ['/evolution', pokemonName] : null">
+  <div
+          class="pokemon-card"
+          [routerLink]=" isRouterLinkActive ? ['/evolution', pokemonName] : null"
+          [ngStyle]="{'border-color': borderColor}"
+  >
     <div class="id m-b-8 text-center">
       {{ pokemonId }}
     </div>
