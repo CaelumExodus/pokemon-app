@@ -1,0 +1,15 @@
+.home-page-wrapper {
+  .filters {
+    gap: 20px;
+    div {
+      padding: 8px;
+      border: 2px solid #FFFFFF;
+      border-radius: 8px;
+    }
+
+    .toggled {
+      border-color: green;
+      color: green;
+    }
+  }
+}

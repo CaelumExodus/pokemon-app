@@ -1,6 +1,23 @@
+
 <div class=" p-b-24 page-container">
-  <nav>
-    <h1 ><span [routerLink]="['/']" class="cursor-pointer">Pokemon</span></h1>
+  <nav class="d-flex justify-between">
+    <h1><span [routerLink]="['/']" class="cursor-pointer">Pokemon</span></h1>
+
+    <p *ngIf="trainerInfo">
+      Witaj
+      <span>{{ trainerInfo.trainerName }}</span>
+      z
+      <span>{{ trainerInfo.trainerLocation }}</span>
+      a mój pokemon to
+      <span>{{ trainerInfo.pokemonName }}</span>
+    </p>
   </nav>
   <router-outlet></router-outlet>
 </div>
+
+
+<app-trainer-details-modal
+        (trainerDataSaved)="test($event)"
+>
+
+</app-trainer-details-modal>

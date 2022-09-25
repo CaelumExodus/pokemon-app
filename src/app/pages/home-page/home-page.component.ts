@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit } from '@angular/core';
 import { PokemonService } from "../../core/services/pokemon.service";
 import { IValueAndId } from "../../core/interfaces/IValueAndId";
-import { finalize } from "rxjs";
+import { filter, finalize } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import { EvolutionService } from "../../core/services/evolution.service";
+import { ISinglePokemon } from "../../core/interfaces/ISinglePokemon";
 
 @Component({
   selector: 'app-home-page',
@@ -15,21 +16,23 @@ export class HomePageComponent implements OnInit {
 
   public isLoading = true;
   public pokemonDetailUrlList: IValueAndId[] = [];
-  public pokemonListWithDetails: any = [];
+  public pokemonListWithDetails: ISinglePokemon[] = [];
   public offset = 0;
+  public filtersArray: string[] = [];
+  public availableFiltersArray: string[] = [];
 
 
   constructor(
     private readonly _pokemonService: PokemonService,
+    private readonly _evolutionService: EvolutionService,
     private readonly _httpClient: HttpClient,
     private readonly _activatedRoute: ActivatedRoute,
-    private readonly _cdr: ChangeDetectorRef,
     private readonly _router: Router,
-    private readonly _evolutionService: EvolutionService,
   ) {
   }
 
   ngOnInit(): void {
+
     (this._activatedRoute.queryParams.subscribe(
         res => {
           if (
@@ -45,7 +48,6 @@ export class HomePageComponent implements OnInit {
         }
       )
     )
-
   }
 
   public resetPage(): void {
@@ -58,8 +60,6 @@ export class HomePageComponent implements OnInit {
   }
 
   public getAllPokemons(offset: number): void {
-    console.log(this.offset)
-
     this.isLoading = true;
     this.pokemonListWithDetails = [];
     this._pokemonService.getPokemonList(offset).pipe(
@@ -76,11 +76,64 @@ export class HomePageComponent implements OnInit {
 
   public getPokemonDetails() {
     this.pokemonDetailUrlList.forEach(pokemon => {
-      this._pokemonService.getSinglePokemon(pokemon.name).pipe().subscribe(
+      this._pokemonService.getSinglePokemon(pokemon.name).pipe(
+        finalize(() => this.showAvailableFilters())
+      ).subscribe(
         res => {
-          this.pokemonListWithDetails.push(res)
+          this.pokemonListWithDetails.push(res);
         }
       )
     })
   }
+
+  public showAvailableFilters() {
+    this.availableFiltersArray = [];
+
+    this.pokemonListWithDetails.forEach(pokemon => {
+      pokemon.types.forEach(types => {
+        if (this.availableFiltersArray.indexOf(types.type.name) === -1) {
+          this.availableFiltersArray.push(types.type.name)
+        }
+      })
+    })
+  }
+
+  public filterByType(type: string): void {
+
+    if(this.filtersArray.includes(type)) {
+      this.filtersArray = this.filtersArray.filter( existingType => existingType !== type)
+    } else {
+      this.filtersArray.push(type)
+    }
+
+    if (!this.filtersArray.length) {
+      this.getAllPokemons(this.offset);
+    }
+
+    this.pokemonListWithDetails = this.pokemonListWithDetails.filter(pokemon => {
+      let deleteFlag = false;
+      pokemon.types.forEach(pokemon => {
+        if (this.filtersArray.includes(pokemon.type.name)) {
+          deleteFlag = true;
+        }
+      })
+
+      console.log('filterArray',this.filtersArray)
+      return deleteFlag
+    })
+
+  }
+
+  public appendFilter(filter: string[]): void {
+    console.log('Append')
+    this._router.navigate([], {
+      relativeTo: this._activatedRoute,
+      queryParams: {
+        filters: filter
+      },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+
 }

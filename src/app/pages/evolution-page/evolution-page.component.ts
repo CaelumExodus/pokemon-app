@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ISinglePokemon } from "../../core/interfaces/ISinglePokemon";
 import { PokemonService } from "../../core/services/pokemon.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { EvolutionService } from "../../core/services/evolution.service";
 import { HttpClient } from "@angular/common/http";
 import { finalize, Subscription } from "rxjs";
@@ -25,7 +25,8 @@ export class EvolutionPageComponent implements OnInit {
     private readonly _evolutionService: EvolutionService,
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _httpClient: HttpClient,
-    private readonly _location: Location
+    private readonly _location: Location,
+    private readonly _router: Router
   ) {
   }
 
@@ -79,6 +80,8 @@ export class EvolutionPageComponent implements OnInit {
         )
       }
     )
-
   }
+
+
+
 }

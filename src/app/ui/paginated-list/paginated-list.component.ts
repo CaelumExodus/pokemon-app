@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ISinglePokemon } from "../../core/interfaces/ISinglePokemon";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
@@ -14,18 +14,20 @@ export class PaginatedListComponent implements OnInit, OnDestroy {
   @Input() showPagination = true;
   @Input() offset = 0;
 
-  @Output() changePageEmitter = new EventEmitter<number>()
+  @Output() changePageEmitter = new EventEmitter<number>();
 
-  private _subArray: Subscription[] = []
+
+
+  private _subArray: Subscription[] = [];
 
   constructor(
     private readonly _router: Router,
-    private readonly _activatedRoute: ActivatedRoute
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly _cdr: ChangeDetectorRef
   ) {
   }
 
   ngOnInit(): void {
-
   }
 
   public nextPage(): void {
@@ -50,9 +52,11 @@ export class PaginatedListComponent implements OnInit, OnDestroy {
       relativeTo: this._activatedRoute,
       queryParams: {
         offset: this.offset
-      }
+      },
     });
   }
+
+
 
   ngOnDestroy() {
     this._subArray.forEach(subscription => subscription.unsubscribe());

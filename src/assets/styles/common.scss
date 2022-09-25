@@ -3,6 +3,7 @@
 @import "spacing";
 @import "alignment";
 @import "typography";
+@import "~ngx-smart-modal/ngx-smart-modal";
 
 * {
   margin: 0;
@@ -19,5 +20,28 @@ body {
 }
 
 nav {
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+  
   padding: 24px;
+
+  p {
+    font-size: 20px;
+    span {
+      text-transform: capitalize;
+      color: green;
+    }
+
+    @media (max-width: 600px) {
+      margin-top: 20px;
+    }
+
+  }
+
+}
+
+.nsm-dialog {
+  max-width: 876px !important;
 }

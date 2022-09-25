@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-skeleton-loader',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./skeleton-loader.component.scss']
 })
 export class SkeletonLoaderComponent implements OnInit {
+
+  @Input() isLoading = true;
 
   constructor() { }
 

@@ -1,5 +1,16 @@
 <app-loader [isLoading]="isLoading"></app-loader>
+
 <div class="wrapper home-page-wrapper">
+
+
+
+  <div class="filters d-flex justify-center align-center flex-wrap m-b-24">
+    <div class="cursor-pointer  {{ type }}-filter"
+         *ngFor="let type of availableFiltersArray"
+         (click)="filterByType(type)">
+      {{ type }}
+    </div>
+  </div>
 
   <app-paginated-list
           *ngIf="pokemonListWithDetails && !isLoading"

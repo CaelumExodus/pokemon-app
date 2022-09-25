@@ -1,0 +1,37 @@
+<ngx-smart-modal #trainerModal identifier="trainerModal">
+
+  <div class="trainer-detail-wrapper d-flex justify-center align-center flex-column">
+    <h3 class="m-b-16">Welcome text</h3>
+
+
+    <input type="text" placeholder="Trainer name" class="m-b-16" [(ngModel)]="trainerInfo.trainerName">
+
+    <select [(ngModel)]="trainerInfo.trainerLocation">
+      <option hidden="true">Location</option>
+      <option *ngFor="let region of regionArray">{{ region }}</option>
+    </select>
+
+    <div class="skeleton-wrapper d-flex justify-center align-center flex-wrap m-t-24" *ngIf="isLoading">
+      <div class="skeleton-box d-flex justify-center align-center" *ngFor="let i of [1, 2, 3]">
+        <app-skeleton-loader></app-skeleton-loader>
+      </div>
+    </div>
+    <div class="random-pokemons d-flex m-t-24 flex-wrap justify-center align-center" *ngIf="!isLoading">
+      <ng-container *ngFor="let pokemon of randomPokemonsArray">
+        <app-pokemon-card
+                (click)="chosePokemon(pokemon.name)"
+                [isRouterLinkActive]="false"
+                [pokemonId]="pokemon.id"
+                [pokemonName]="pokemon.name"
+                [pokemonTypes]="pokemon.types"
+                [pokemonSprite]="pokemon.sprites.front_default"
+        >
+        </app-pokemon-card>
+      </ng-container>
+    </div>
+
+    <button class="m-t-16 cursor-pointer" (click)="saveTrainerData()">Save</button>
+  </div>
+
+</ngx-smart-modal>
+

@@ -1,11 +1,11 @@
-
 <div class="pokemon-card-wrapper">
-  <div class="pokemon-card" [routerLink]=" isRouterLinkActive ? ['/evolution', pokemonName] : []">
+  <div class="pokemon-card" [routerLink]=" isRouterLinkActive ? ['/evolution', pokemonName] : null">
     <div class="id m-b-8 text-center">
       {{ pokemonId }}
     </div>
     <div>
-      <img [src]="pokemonSprite" alt="Pokemon image!">
+      <img *ngIf="pokemonSprite" [src]="pokemonSprite" alt="Pokemon image!">
+      <img *ngIf="!pokemonSprite" src="../../../assets/images/question-mark.svg" alt="No pokemon image!">
     </div>
     <div>
       <p>Name: {{ pokemonName }}</p>

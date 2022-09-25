@@ -1,0 +1,47 @@
+.trainer-detail-wrapper {
+  color: black;
+
+  .skeleton-wrapper {
+    gap: 10px;
+    .skeleton-box {
+      border: 1px solid green;
+      border-radius: 8px;
+      padding: 16px;
+      width: 235px;
+      height: 350px;
+    }
+  }
+
+
+  input {
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 8px;
+    width: 250px;
+    height: 40px;
+  }
+
+  select {
+    padding: 8px;
+    font-size: 18px;
+    width: 250px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    height: 40px;
+  }
+
+
+  .random-pokemons {
+    gap: 16px;
+  }
+
+  button {
+    padding: 16px;
+    font-size: 18px;
+    line-height: 1.3px;
+    background: none;
+    border: 2px solid #000000;
+    border-radius: 8px;
+  }
+}
+
