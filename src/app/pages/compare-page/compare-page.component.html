@@ -22,7 +22,8 @@
 
     <button class="btn" (click)="comparePokemons()"> Compare</button>
 
-    <div class="m-t-40">
+    <app-loader [isLoading]="firstPokemonIsLoading || secondPokemonIsLoading"></app-loader>
+    <div class="m-t-40" *ngIf="!firstPokemonIsLoading && !secondPokemonIsLoading">
       <app-compare-table
         *ngIf="firstPokemonStats.length && secondPokemonStats.length"
         [firstPokemonAllStats]="firstPokemonStats"

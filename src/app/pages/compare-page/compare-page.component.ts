@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokemonService } from "../../core/services/pokemon.service";
 import { IPokemonStats } from "../../core/interfaces/IPokemonStats";
 import { Location } from "@angular/common";
+import { finalize } from "rxjs";
 
 @Component({
   selector: 'app-compare-page',
@@ -9,6 +10,9 @@ import { Location } from "@angular/common";
   styleUrls: ['./compare-page.component.scss']
 })
 export class ComparePageComponent implements OnInit {
+
+  public firstPokemonIsLoading = false;
+  public secondPokemonIsLoading = false;
 
   public firstPokemon = '';
   public secondPokemon = '';
@@ -31,23 +35,28 @@ export class ComparePageComponent implements OnInit {
     )
   }
 
-
   public goBack(): void {
     this._location.back();
   }
 
   public comparePokemons(): void {
+    this.firstPokemonIsLoading = true;
+    this.secondPokemonIsLoading = true;
     this.firstPokemonStats = [];
     this.secondPokemonStats = [];
 
-    this._pokemonService.getSinglePokemon(this.firstPokemon).subscribe(
+    this._pokemonService.getSinglePokemon(this.firstPokemon).pipe(
+      finalize(() => this.firstPokemonIsLoading = false)
+    ).subscribe(
       res => {
         this.firstPokemonStats = res.stats
       },
       err => console.log(err)
     )
 
-    this._pokemonService.getSinglePokemon(this.secondPokemon).subscribe(
+    this._pokemonService.getSinglePokemon(this.secondPokemon).pipe(
+      finalize(() => this.secondPokemonIsLoading = false)
+    ).subscribe(
       res => {
         this.secondPokemonStats = res.stats
       },

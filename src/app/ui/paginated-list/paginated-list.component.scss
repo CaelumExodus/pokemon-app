@@ -1,3 +1,16 @@
-.list-display {
-  gap: 24px;
+.paginated-list-wrapper {
+
+  .list-display {
+    gap: 24px;
+  }
+
+  .pagination-nav {
+    span {
+      display: inline-block;
+      padding: 8px;
+      border: 1px solid #FFFFFF ;
+      border-radius: 8px;
+    }
+  }
+
 }
